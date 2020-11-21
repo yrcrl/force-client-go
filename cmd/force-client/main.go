@@ -7,8 +7,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/mikan/force-client-go/config"
-	"github.com/mikan/force-client-go/force"
+	"github.com/yrcrl/force-client-go/config"
+	"github.com/yrcrl/force-client-go/force"
 )
 
 var f = flag.String("f", "config.json", "load specified credential & parameter file")

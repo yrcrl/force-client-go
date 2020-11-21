@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"reflect"
 	"strings"
@@ -56,7 +57,7 @@ func (c *Client) Create(ctx context.Context, sObjectName string, v interface{}) 
 
 	// Check status
 	if res.StatusCode != http.StatusCreated {
-		return "", errors.New(fmt.Sprintf("failed to create: %d %s", res.StatusCode, res.Status))
+		return "", fmt.Errorf("failed to create: %d %s", res.StatusCode, res.Status)
 	}
 
 	// Decode response
@@ -67,9 +68,10 @@ func (c *Client) Create(ctx context.Context, sObjectName string, v interface{}) 
 	}
 	if out.Success {
 		return out.Id, nil
-	} else {
-		return "", errors.New(strings.Join(out.Errors, ","))
 	}
+
+	return "", errors.New(strings.Join(out.Errors, ","))
+
 }
 
 // Read reads specified record.
@@ -101,7 +103,7 @@ func (c *Client) Read(ctx context.Context, sObjectName, id string, out interface
 
 	// Check status
 	if res.StatusCode != http.StatusOK {
-		return errors.New(fmt.Sprintf("failed to get: %d %s", res.StatusCode, res.Status))
+		return fmt.Errorf("failed to get: %d %s", res.StatusCode, res.Status)
 	}
 
 	// Decode response
@@ -152,15 +154,19 @@ func (c *Client) Update(ctx context.Context, sObjectName, id string, v interface
 		return err
 	}
 
-	// Check status
 	switch res.StatusCode {
-	case http.StatusOK:
-		fallthrough
-	case http.StatusNoContent:
+	case http.StatusOK, http.StatusNoContent:
 		return nil
-	default:
-		return errors.New(fmt.Sprintf("failed to update: %d %s", res.StatusCode, res.Status))
 	}
+
+	bts, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		c.Logger.Printf("failed to read response: %v", err)
+		return err
+	}
+
+	return fmt.Errorf("failed to update [%s]: %s", res.Status, string(bts))
+
 }
 
 // Delete deletes specified record.
@@ -187,11 +193,15 @@ func (c *Client) Delete(ctx context.Context, sObjectName, id string) error {
 		return err
 	}
 
-	// Check status
-	switch res.StatusCode {
-	case http.StatusNoContent:
+	if res.StatusCode == http.StatusNoContent {
 		return nil
-	default:
-		return errors.New(fmt.Sprintf("failed to delete: %d %s", res.StatusCode, res.Status))
 	}
+
+	bts, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		c.Logger.Printf("failed to read response: %v", err)
+		return err
+	}
+
+	return fmt.Errorf("failed to update [%s]: %s", res.Status, string(bts))
 }

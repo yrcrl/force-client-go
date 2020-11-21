@@ -3,7 +3,7 @@ force-client-go
 
 [![Build Status](https://travis-ci.org/mikan/force-client-go.svg?branch=master)](https://travis-ci.org/mikan/force-client-go)
 [![codecov](https://codecov.io/gh/mikan/force-client-go/branch/master/graph/badge.svg)](https://codecov.io/gh/mikan/force-client-go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/mikan/force-client-go)](https://goreportcard.com/report/github.com/mikan/force-client-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/yrcrl/force-client-go)](https://goreportcard.com/report/github.com/yrcrl/force-client-go)
 
 A simple client library for Force.com REST API written by [Go](https://golang.org/).
 
@@ -17,7 +17,7 @@ A simple client library for Force.com REST API written by [Go](https://golang.or
 ### Setup
 
 ```
-go get github.com/mikan/force-client-go/...
+go get github.com/yrcrl/force-client-go/...
 ```
 
 ### Sample

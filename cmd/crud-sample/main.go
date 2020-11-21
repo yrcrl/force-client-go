@@ -8,9 +8,9 @@ import (
 
 	"os"
 
-	"github.com/mikan/force-client-go/config"
-	"github.com/mikan/force-client-go/force"
-	"github.com/mikan/force-client-go/sobject"
+	"github.com/yrcrl/force-client-go/config"
+	"github.com/yrcrl/force-client-go/force"
+	"github.com/yrcrl/force-client-go/sobject"
 )
 
 var f = flag.String("f", "config.json", "load specified credential file")

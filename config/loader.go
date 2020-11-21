@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/mikan/force-client-go/force"
+	"github.com/yrcrl/force-client-go/force"
 )
 
 type Params struct {

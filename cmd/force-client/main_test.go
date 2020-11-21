@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/mikan/force-client-go/force"
+	"github.com/yrcrl/force-client-go/force"
 )
 
 func TestMain(m *testing.M) {

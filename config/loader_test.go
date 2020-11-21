@@ -3,7 +3,7 @@ package config
 import (
 	"testing"
 
-	"github.com/mikan/force-client-go/force"
+	"github.com/yrcrl/force-client-go/force"
 )
 
 func TestLoadWithSampleFile(t *testing.T) {
