@@ -161,7 +161,7 @@ func (c *Client) Update(ctx context.Context, sObjectName, id string, v interface
 	}
 
 	switch res.StatusCode {
-	case http.StatusOK, http.StatusNoContent:
+	case http.StatusOK, http.StatusNoContent, http.StatusCreated:
 		return nil
 	}
 
