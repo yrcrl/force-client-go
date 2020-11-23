@@ -56,9 +56,9 @@ func (c *Client) Create(ctx context.Context, sObjectName string, v interface{}) 
 	}
 
 	// Check status
-	if res.StatusCode != http.StatusCreated {
-		return "", fmt.Errorf("failed to create: %d %s", res.StatusCode, res.Status)
-	}
+	// if res.StatusCode != http.StatusCreated {
+	// 	return "", fmt.Errorf("failed to create: %d %s", res.StatusCode, res.Status)
+	// }
 
 	// Decode response
 	var out createResponse
