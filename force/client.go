@@ -3,7 +3,6 @@ package force
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -39,16 +38,15 @@ var versionMatcher = regexp.MustCompile("[0-9]+\\.[0-9]+")
 // NewClient creates the new force.com client.
 func NewClient(env Env, version string, logger *log.Logger) (*Client, error) {
 	if env < 0 {
-		return nil, errors.New("invalid env: " + string(env))
+		return nil, fmt.Errorf("invalid env: %v", env)
 	}
 	if !versionMatcher.MatchString(version) {
-		return nil, errors.New("invalid version number: " + version)
+		return nil, fmt.Errorf("invalid version number: %s", version)
 	}
 	if logger == nil {
 		logger = log.New(ioutil.Discard, "", log.LstdFlags)
 	}
-	client := &Client{version, env, &http.Client{}, logger, nil}
-	return client, nil
+	return &Client{Version: version, Env: env, HttpClient: &http.Client{}, Logger: logger}, nil
 }
 
 // Session sets already authorized session to the current client.
