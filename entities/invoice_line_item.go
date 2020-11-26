@@ -1,4 +1,4 @@
-package force
+package entities
 
 const InvoiceLineItemObjectName = "Invoice_Line_Item__c"
 

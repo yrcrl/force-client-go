@@ -1,4 +1,4 @@
-package force
+package entities
 
 type ID string
 type Text string

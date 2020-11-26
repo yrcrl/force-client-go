@@ -1,4 +1,4 @@
-package force
+package entities
 
 const UserObjectName = "User"
 

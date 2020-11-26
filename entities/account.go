@@ -1,4 +1,4 @@
-package force
+package entities
 
 import (
 	"fmt"
@@ -76,7 +76,7 @@ type Address struct {
 }
 
 func (a *Address) CountryGerman() string {
-	switch a.Country{
+	switch a.Country {
 	case "Austria":
 		return "Österreich"
 	}
