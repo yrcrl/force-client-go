@@ -55,7 +55,7 @@ type Product struct {
 	InsuranceDeductible         float64           `json:"insurance_deductible__c,omitempty"`
 	Kündigungsfrist             int               `json:"Kuendigungsfrist__c,omitempty"`
 	MilageLimit                 float64           `json:"Milage_Limit__c,omitempty"`
-	MinimumTerm                 int               `json:"Mindestlaufzeit__c,omitempty"`
+	MinimumTerm                 float64           `json:"Mindestlaufzeit__c,omitempty"`
 	NachfolgeProduktId          string            `json:"Nachfolge_Produkt__c,omitempty"`
 	ProductCode                 string            `json:"ProductCode,omitempty"`
 	Currency                    string            `json:"CurrencyIsoCode,omitempty"`
@@ -67,4 +67,6 @@ type Product struct {
 	QuantityUnitOfMeasure       string            `json:"QuantityUnitOfMeasure,omitempty"`
 	VATDeductible               float64           `json:"vat_deductible__c,omitempty"`
 	YearlyMilageLimit           float64           `json:"Milage_Limit__c,omitempty"`
+	TrimId                      string            `json:"Trim__c,omitempty"`
+	SpecialConditions           string            `json:"Special_Conditions__c,omitempty"`
 }
