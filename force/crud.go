@@ -159,6 +159,7 @@ func (c *Client) Update(ctx context.Context, sObjectName, id string, v interface
 		c.Logger.Printf("failed to execute the request: %v", err)
 		return err
 	}
+	defer res.Body.Close()
 
 	switch res.StatusCode {
 	case http.StatusOK, http.StatusNoContent, http.StatusCreated:
